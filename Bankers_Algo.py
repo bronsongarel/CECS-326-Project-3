@@ -26,7 +26,7 @@ allocation = [
 ]
 
 # prompts user to input n processors and m resources types.
-n = int(input("How many processors do you have? "))
+n = int(input("How many processes do you have? "))
 m = int(input("How many resource types do you have? "))
 
 
