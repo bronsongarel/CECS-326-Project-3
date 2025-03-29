@@ -1,3 +1,12 @@
+'''
+Project 3: Banker's Algorithim
+Group Members: Bronson Garel (ID: 030294431) and Tommy Truong (ID: 027664596) 
+Class: CECS326
+'''
+'''NOTE: Project document did not specify if available, max, and alloc matrices should be prompted'
+         for user input, we decided to hard code them instead. n,m, and resource request are still prompted.'''
+
+"Project Document Test Case"
 available = [3, 3, 2] 
 
 maximum = [
@@ -16,14 +25,13 @@ allocation = [
     [0, 0, 2]
 ]
 
+# prompts user to input n processors and m resources types.
 n = int(input("How many processors do you have? "))
 m = int(input("How many resource types do you have? "))
 
+
 def need_matrix(max, alloc):
     "Need Matrix (max - alloc.)" 
-    "uncomment if n,m not prefined"
-    #n = len(maximum)      # n processes
-    #m = len(maximum[0])   # m resource types
     need = [[0 for i in range(m)] for _ in range(n)] # initialize empty array to store result
     for i in range(n):
         for j in range(m):
@@ -83,10 +91,19 @@ def request_resources(process, request):
     saftey_algo(available, allocation, need)
     print("Resources allocated to process", process)
     
-# Given Test case
 
+# Function calls 
 need = need_matrix(maximum, allocation) # Need Matrix
 saftey_algo(available, allocation, need) # Call saftey algo
 
-request = [3, 3, 1]
-request_resources(4, request)
+# Handles resource request input
+if input("Is there a resource request? (y/n): ").lower() == "y": 
+    request = []
+    # process number thats requesting resource
+    requestingProcess = int(input("Enter process # that is requesting: "))
+    for i in range(3): # 3 resources inputs only
+        resource_input = int(input(f"Enter Resource {i} (max 3 inputs): "))
+        request.append(resource_input)
+    request_resources(requestingProcess, request)
+else:
+    print("no resources requested.")
